@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPasssword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setlastName] = useState("");
-  const [gender, setGender] = useState("");
+  const [age, setAge] = useState();
   const [isLogin, setIsLogin] = useState(false);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ return navigate("/")
       const res = await axios.post(BASE_URL + "/auth/signup" , 
         {firstName,
           lastName,
-          gender,
+          age,
           email,
           password
         } , {withCredentials:true})
@@ -67,9 +67,9 @@ return navigate("/")
           </label>
           <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">Gender</span>
+                <span className="label-text">Age</span>
               </div>
-              <input type="text" placeholder="..." value={gender} onChange={(e) => setGender(e.target.value)} className="input input-bordered w-full max-w-xs" required/>
+              <input type="text" placeholder="..." value={age} onChange={(e) => setAge(e.target.value)} className="input input-bordered w-full max-w-xs" required/>
           </label>
           </>)}
           <label className="form-control w-full max-w-xs">
