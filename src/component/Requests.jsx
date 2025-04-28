@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { addRequests } from '../utils/requestSlice'
+import { addRequests, removeRequest } from '../utils/requestSlice'
 
 const Requests = () => {
     const dispatch = useDispatch();
@@ -16,12 +16,17 @@ const Requests = () => {
         }
     }
 
+    const reviewRequest = async (status, _id) =>{
+        await axios.post(BASE_URL + "/request/review/" +status+"/"+_id ,{} , {withCredentials:true})
+        dispatch(removeRequest(_id))
+    }
+
     useEffect(()=>{
         fetchRequest();
     },[])
-    if(!requests) return;
+    if(!requests) return <h1 className='font-bold flex justify-center text-3xl'>No Request Found</h1>;;
 
-    if(requests.length === 0) return <h1 className='font-bold text-xl'>No Request Found</h1>;
+    if(requests.length === 0) return <h1 className='font-bold flex justify-center text-3xl'>No Request Found</h1>;
   return (
     <div className='text-center my-10'>
         <h1 className='font-bold text-xl'>Panding Request</h1>
@@ -45,8 +50,8 @@ const Requests = () => {
                             <p className='text-start'>{"githubUrl: " +githubUrl}</p>
                             <p className='text-start'>{"linkedinUrl: " +linkedinUrl}</p>
                             <p className='text-start'>{"about: " +about}</p>
-                            <button className="btn btn-error ">Rejected</button>   
-                    <button className="btn btn-active btn-accent">Accepted</button> 
+                            <button className="btn btn-error " onClick={()=> reviewRequest("rejected", request._id)}>Rejected</button>   
+                               <button className="btn btn-active btn-accent" onClick={()=> reviewRequest("accepted", request._id)}>Accepted</button> 
                         </div>   
                     </div> 
                 </div>
