@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const EditProfile = ({ user }) => {
+  console.log(user)
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
@@ -13,6 +14,9 @@ const EditProfile = ({ user }) => {
   const [gender, setGender] = useState(user.gender || "");
   const [about, setAbout] = useState(user.about || "");
   const [experience, setExperience] = useState(user.experience );
+  const [linkedinUrl, setLinkedinUrl] = useState(user.linkedinUrl );
+  const [githubUrl, setGithubUrl] = useState(user.githubUrl );
+  const [skills, setSkills] = useState([user.skills] );
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const [showToast, setShowToast] = useState(false);
@@ -124,6 +128,17 @@ const EditProfile = ({ user }) => {
                 </label>
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
+                    <span className="label-text">Skills:</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={skills}
+                    className="input input-bordered w-full max-w-xs"
+                    onChange={(e) => setSkills(e.target.value)}
+                  />
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
                     <span className="label-text">About:</span>
                   </div>
                   <input
@@ -131,6 +146,28 @@ const EditProfile = ({ user }) => {
                     value={about}
                     className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setAbout(e.target.value)}
+                  />
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">Linkedin URL:</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={linkedinUrl}
+                    className="input input-bordered w-full max-w-xs"
+                    onChange={(e) => setLinkedinUrl(e.target.value)}
+                  />
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">Github URL:</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={githubUrl}
+                    className="input input-bordered w-full max-w-xs"
+                    onChange={(e) => setGithubUrl(e.target.value)}
                   />
                 </label>
               </div>
