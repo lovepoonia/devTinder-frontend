@@ -7,6 +7,7 @@ import Feed from "./component/Feed"
 import Profile from "./component/Profile"
 import Connection from "./component/Connection"
 import Requests from "./component/Requests"
+import Chat from "./component/Chat"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/connection" element={<Connection/>}/>
           <Route path="/requests" element={<Requests/>}/>
+          <Route path="/chat/:toUserId" element={<Chat/>}/>
         </Route>
        </Routes>
      </BrowserRouter>

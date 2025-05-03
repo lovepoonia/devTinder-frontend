@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BASE_URL } from '../utils/constants';
 import { addConnection } from '../utils/connectionSlice';
+import { Link } from 'react-router-dom';
 
 const Connection = () => {
     const dispatch = useDispatch();
@@ -46,10 +47,10 @@ const Connection = () => {
                             <p className='text-start'>{"gender: " +gender}</p>
                             <p className='text-start'>{"experience: " +experience}</p>
                             <p className='text-start'>{"skills: " +skills}</p>
-                            <p className='text-start'>{"githubUrl: " +githubUrl}</p>
-                            <p className='text-start'>{"linkedinUrl: " +linkedinUrl}</p>
+                            <a className='text-start' href={githubUrl}  target="_blank">{"githubUrl: " +githubUrl}</a>
+                            <a className='text-start' href={linkedinUrl}  target="_blank">{"linkedinUrl: " +linkedinUrl}</a>
                             <p className='text-start'>{"about: " +about}</p>
-                            
+                            <Link to={"/chat/"+_id}><button className="btn btn-outline btn-info">💬Message</button></Link>  
                         </div>  
                     </div>    
                 </div>
