@@ -18,7 +18,6 @@ const Chat = () => {
             const chatMessage = chat?.data?.message.map((msg) => {
                 const {senderId, text, createdAt } = msg;
                 const time=new Date(createdAt).toLocaleTimeString();
-                console.log(time)
                 
                 return {
                     firstName: senderId?.firstName,
@@ -71,7 +70,6 @@ const Chat = () => {
                             <time className="text-xs opacity-50">{msg.createdAt}</time>
                         </div>
                         <div className="chat-bubble">{msg.text}</div>
-                        <div className="chat-footer opacity-50">Seen</div>
                     </div>
                 )
             })}
