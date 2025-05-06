@@ -6,12 +6,13 @@ import { addConnection } from '../utils/connectionSlice';
 import { Link } from 'react-router-dom';
 
 const Connection = () => {
-    const dispatch = useDispatch();
     const connections = useSelector((store) => store.connections);
+    const dispatch = useDispatch();
+    
 
     const fetchConnections = async () => {
         try {
-            const res = await axios.get(BASE_URL + "/user/connections", {withCredentials:true})
+            const res = await axios.get(BASE_URL +"/user/connections", {withCredentials:true})
             
             dispatch(addConnection(res?.data?.data));
             
@@ -24,7 +25,7 @@ const Connection = () => {
         fetchConnections();
     },[])
 
-    if(!connections) return;
+    if(!connections) return <h1 className='flex justify-center font-bold text-2xl my-10'>No Connection Found</h1>;
 
     if(connections.length === 0) return <h1 className='flex justify-center font-bold text-2xl my-10'>No Connection Found</h1>;
   return (
