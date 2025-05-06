@@ -48,58 +48,107 @@ return navigate("/")
   }
 
   return (
-    <div className="card bg-base-300 w-96 shadow-xl  m-auto my-12">
+    <div className="flex justify-center items-center min-h-screen px-2 bg-base-300">
+      <div className="card bg-base-300 w-full max-w-md shadow-xl my-12">
         <div className="card-body">
-          <h2 className="card-title">{isLogin ? "Login" :"SignUp"}</h2>
+          <h2 className="card-title text-center">
+            {isLogin ? "Login" : "Sign Up"}
+          </h2>
+    
           {!isLogin && (
             <>
-              <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">First Name</span>
-              </div>
-              <input type="text" placeholder="ABC" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="input input-bordered w-full max-w-xs" required/>
+              <label className="form-control w-full">
+                <div className="label">
+                  <span className="label-text">First Name</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="ABC"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+    
+              <label className="form-control w-full">
+                <div className="label">
+                  <span className="label-text">Last Name</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="XYZ"
+                  value={lastName}
+                  onChange={(e) => setlastName(e.target.value)}
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+    
+              <label className="form-control w-full">
+                <div className="label">
+                  <span className="label-text">Age</span>
+                </div>
+                <input
+                  type="text"
+                  placeholder="..."
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+            </>
+          )}
+    
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">Email</span>
+            </div>
+            <input
+              type="email"
+              placeholder="...@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input input-bordered w-full"
+              required
+            />
           </label>
-          <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">Last Name</span>
-              </div>
-              <input type="text" placeholder="XYZ" value={lastName} onChange={(e) => setlastName(e.target.value)} className="input input-bordered w-full max-w-xs" required/>
+    
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">Password</span>
+            </div>
+            <input
+              type="password"
+              placeholder="A@1.."
+              value={password}
+              onChange={(e) => setPasssword(e.target.value)}
+              className="input input-bordered w-full"
+              required
+            />
           </label>
-          <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">Age</span>
-              </div>
-              <input type="text" placeholder="..." value={age} onChange={(e) => setAge(e.target.value)} className="input input-bordered w-full max-w-xs" required/>
-          </label>
-          </>)}
-          <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">Email</span>
-              </div>
-              <input type="email" placeholder="...@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} className="input input-bordered w-full max-w-xs" required/>
-          </label>
-          <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">Password</span>
-              </div>
-              <input type="password" placeholder="A@1.." value={password} onChange={(e) => setPasssword(e.target.value)} className="input input-bordered w-full max-w-xs"  required  />
-          </label>
-          <p className='text-red-500'>{error}</p>
-          <div className="card-actions justify-center m-2">
-            <button className="btn btn-primary" onClick={isLogin ? handleLogin: handleSignUp}>{isLogin? "Login":"SignUp"}</button>
+    
+          <p className="text-red-500 text-sm">{error}</p>
+    
+          <div className="card-actions justify-center mt-4">
+            <button
+              className="btn btn-primary w-full"
+              onClick={isLogin ? handleLogin : handleSignUp}
+            >
+              {isLogin ? "Login" : "Sign Up"}
+            </button>
           </div>
-        </div>
-        <p
-            className="m-auto cursor-pointer py-2"
-            onClick={() => setIsLogin((value) => !value)}
+    
+          <p
+            className="text-center mt-4 text-sm cursor-pointer hover:underline"
+            onClick={() => setIsLogin((prev) => !prev)}
           >
-            {isLogin
-              ? "New User? Signup Here"
-              : "Existing User? Login Here"}
+            {isLogin ? "New User? Sign Up Here" : "Existing User? Login Here"}
           </p>
+        </div>
+      </div>
     </div>
-      
-  
   )
 }
 

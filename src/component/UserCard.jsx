@@ -13,25 +13,36 @@ const UserCard = ({user}) => {
     }
 
   return (
-    <div className="card bg-base-300 w-96 shadow-xl">
-  <figure>
-    <img
-      src={photoUrl}
-      alt="User Photo" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">{firstName + " " + lastName}</h2>
-    <p>{"age :" +age+ " , gender :" + gender}</p>
-    <p>{about}</p>
-   
-
-
-    <div className="card-actions justify-center my-1">
-      <button className="btn btn-secondary" onClick={() => handelSendRequest("ignored", _id)}>Ignore</button>
-      <button className="btn btn-primary" onClick={() => handelSendRequest("interested", _id)}>Interested</button>
+    <div className="card bg-base-300 w-full sm:w-96 shadow-xl mx-auto my-5">
+      <figure>
+        <img
+          src={photoUrl}
+          alt="User Photo"
+          className="w-full h-auto sm:w-60 sm:h-60 rounded-full mx-auto"
+        />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title text-center">{firstName + " " + lastName}</h2>
+        <p className="text-center">{"Age: " + age + " , Gender: " + gender}</p>
+        <p className="text-center">{about}</p>
+    
+        <div className="card-actions justify-center my-4 flex flex-col sm:flex-row gap-2">
+          <button
+            className="btn btn-secondary w-full sm:w-auto"
+            onClick={() => handelSendRequest("ignored", _id)}
+          >
+            Ignore
+          </button>
+          <button
+            className="btn btn-primary w-full sm:w-auto"
+            onClick={() => handelSendRequest("interested", _id)}
+          >
+            Interested
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  
   )
 }
 

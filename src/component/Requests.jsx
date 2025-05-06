@@ -29,35 +29,64 @@ const Requests = () => {
     if(requests.length === 0) return <h1 className='font-bold flex justify-center text-3xl'>No Request Found</h1>;
   return (
     <div className='text-center my-10'>
-        <h1 className='font-bold text-xl'>Panding Request</h1>
+        <h1 className='font-bold text-xl mb-5'>Pending Requests</h1>
 
         {requests.map((request) => {
-            const { _id, firstName, lastName, photoUrl, age, gender, about, experience, githubUrl, linkedinUrl, skills} = request.fromUserId;
-            return (
-                <div key={_id} className='m-10'>
-                    <div className="card card-side bg-base-100 shadow-2xl mx-20 max-w-2xl ">
-                        <figure>
-                            <img
-                                src={photoUrl}
-                                alt={firstName+ " photo"} className='w-60 h-80' />
-                        </figure> 
-                        <div className="card-body">
-                            <h2 className="card-title">{firstName+ " " +lastName}</h2>
-                            <p className='text-start'>{"age: " +age}</p>
-                            <p className='text-start'>{"gender: " +gender}</p>
-                            <p className='text-start'>{"experience: " +experience}</p>
-                            <p className='text-start'>{"skills: " +skills}</p>
-                            <p className='text-start'>{"githubUrl: " +githubUrl}</p>
-                            <p className='text-start'>{"linkedinUrl: " +linkedinUrl}</p>
-                            <p className='text-start'>{"about: " +about}</p>
-                            <button className="btn btn-error " onClick={()=> reviewRequest("rejected", request._id)}>Rejected</button>   
-                               <button className="btn btn-active btn-accent" onClick={()=> reviewRequest("accepted", request._id)}>Accepted</button> 
-                        </div>   
-                    </div> 
+            const {
+            _id,
+            firstName,
+            lastName,
+            photoUrl,
+            age,
+            gender,
+            about,
+            experience,
+            skills,
+        } = request.fromUserId;
+
+        return (
+        <div key={_id} className='m-5'>
+            <div className="card card-side bg-base-100 shadow-2xl max-w-full sm:max-w-2xl mx-auto">
+            <figure>
+                <img
+                src={photoUrl}
+                alt={firstName + " photo"}
+                className="w-full h-auto sm:w-60 sm:h-80"
+                />
+            </figure>
+            <div className="card-body">
+                <h2 className="card-title">{firstName + " " + lastName}</h2>
+                <p className='text-start'>Age: {age}</p>
+                <p className='text-start'>Gender: {gender}</p>
+                <p className='text-start'>Experience: {experience}</p>
+                <p className='text-start'>Skills: {skills}</p>
+
+                
+
+                <p className='text-start'>About: {about}</p>
+
+                {/* Action buttons for review */}
+                <div className="flex flex-col sm:flex-row gap-4 mt-4 justify-center">
+                <button
+                    className="btn btn-error w-full sm:w-auto"
+                    onClick={() => reviewRequest("rejected", request._id)}
+                >
+                    Reject
+                </button>
+                <button
+                    className="btn btn-active btn-accent w-full sm:w-auto"
+                    onClick={() => reviewRequest("accepted", request._id)}
+                >
+                    Accept
+                </button>
                 </div>
-            )
+                </div>
+            </div>
+            </div>
+            );
         })}
-    </div>
+   </div>
+
   )
 }
 

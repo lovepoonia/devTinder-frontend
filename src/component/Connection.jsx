@@ -28,35 +28,45 @@ const Connection = () => {
 
     if(connections.length === 0) return <h1 className='flex justify-center font-bold text-2xl my-10'>No Connection Found</h1>;
   return (
-    <div className='text-center my-10'>
-        <h1 className='font-bold text-xl'>Connection</h1>
+    <div className="text-center my-10 px-4">
+        <h1 className="font-bold text-xl mb-6">Connection</h1>
 
         {connections.map((connection) => {
-            const { _id, firstName, lastName, photoUrl, age, gender, about, experience, githubUrl, linkedinUrl, skills} = connection;
+            const { _id, firstName, lastName, photoUrl, age, gender, about, experience, githubUrl, linkedinUrl, skills } = connection;
+
             return (
-                <div key={_id} className='m-10'>
-                    <div className="card card-side bg-base-100 shadow-2xl mx-20 max-w-2xl ">
-                        <figure>
+                <div key={_id} className="mb-10">
+                    <div className="card bg-base-100 shadow-2xl max-w-4xl mx-auto flex flex-col sm:flex-row items-center sm:items-start">
+                        <figure className="w-full sm:w-60 h-60">
                             <img
                                 src={photoUrl}
-                                alt={firstName+ " photo"} className='w-60 h-60' />
-                        </figure> 
-                        <div className="card-body">
-                            <h2 className="card-title">{firstName+ " " +lastName}</h2>
-                            <p className='text-start'>{"age: " +age}</p>
-                            <p className='text-start'>{"gender: " +gender}</p>
-                            <p className='text-start'>{"experience: " +experience}</p>
-                            <p className='text-start'>{"skills: " +skills}</p>
-                            <a className='text-start' href={githubUrl}  target="_blank">{"githubUrl: " +githubUrl}</a>
-                            <a className='text-start' href={linkedinUrl}  target="_blank">{"linkedinUrl: " +linkedinUrl}</a>
-                            <p className='text-start'>{"about: " +about}</p>
-                            <Link to={"/chat/"+_id}><button className="btn btn-outline btn-info">💬Message</button></Link>  
-                        </div>  
-                    </div>    
+                                alt={`${firstName} photo`}
+                                className="w-full h-full object-cover"
+                            />
+                        </figure>
+                        <div className="card-body w-full sm:w-auto text-left space-y-2">
+                            <h2 className="card-title text-lg">{firstName + " " + lastName}</h2>
+                            <p>Age: {age}</p>
+                            <p>Gender: {gender}</p>
+                            <p>Experience: {experience}</p>
+                            <p>Skills: {skills}</p>
+                            <p>About: {about}</p>
+                            <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline break-all">
+                                GitHub: {githubUrl}
+                            </a>
+                            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline break-all">
+                                LinkedIn: {linkedinUrl}
+                            </a>
+                            <Link to={`/chat/${_id}`}>
+                                <button className="btn btn-outline btn-info mt-2">💬 Message</button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-            )
+            );
         })}
     </div>
+
   )
 }
 

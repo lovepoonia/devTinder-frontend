@@ -89,32 +89,35 @@ const Chat = () => {
     }
 
   return (
-   <div className="w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col">
-        <h1 className="p-5 border-b border-gray-600">Chat</h1>
-        <div className="flex-1 overflow-scroll p-5">
-            {messages.map((msg, index)=>{
-                return(
-                    <div className={"chat " + (user.firstName === msg.firstName ? "chat-end" : "chat-start")} key={index}>
-                        <div className="chat-header">
-                            {msg.firstName+ " "+ msg.lastName}
-                            {/* <time className="text-xs opacity-50">{msg.createdAt}</time> */}
-                            <TimeAgo timestamp={msg.createdAt} />
-                        </div>
-                        <div className="chat-bubble">{msg.text}</div>
+    <div className="w-full max-w-3xl mx-auto border border-gray-600 m-3 sm:m-5 h-[70vh] flex flex-col">
+      <h1 className="p-3 sm:p-5 border-b border-gray-600 text-lg sm:text-xl">Chat</h1>
+
+        <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-4">
+            {messages.map((msg, index) => (
+                <div className={`chat ${user.firstName === msg.firstName ? "chat-end" : "chat-start"}`} key={index}>
+                    <div className="chat-header text-sm sm:text-base flex gap-2 items-center">
+                        <span>{msg.firstName + " " + msg.lastName}</span>
+                        <TimeAgo timestamp={msg.createdAt} />
                     </div>
-                )
-            })}
-            <div ref={messagesEndRef} /> 
+                    <div className="chat-bubble max-w-[80%] break-words">{msg.text}</div>
+                </div>
+            ))}
+            <div ref={messagesEndRef} />
         </div>
-        <div className="p-5 border-t border-gray-600 flex items-center gap-2">
-        <input
-          value={newMessage}
-          onChange={(e) => {setNewMessage(e.target.value)}}
-          className="flex-1 border border-gray-500  rounded p-2"
-        ></input>
-            <button className="btn btn-outline btn-accent" onClick={sendMessage}>✔send</button>
+
+        <div className="p-3 sm:p-5 border-t border-gray-600 flex items-center gap-2">
+            <input
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                className="flex-1 border border-gray-500 rounded p-2 text-sm sm:text-base"
+                placeholder="Type a message..."
+            />
+            <button className="btn btn-outline btn-accent text-sm sm:text-base" onClick={sendMessage}>
+                ✔ Send
+            </button>
         </div>
-   </div>
+    </div>
+
   )
 }
 
